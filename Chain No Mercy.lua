@@ -86,8 +86,3 @@ local AmmoTab = GUI:Tab{
     Name = "💥Ammo💥",
     Icon = "rbxassetid://13488840422"
 }
-Tab:Button{
-	Name = "",
-	Description = nil,
-	Callback = function() end
-}
