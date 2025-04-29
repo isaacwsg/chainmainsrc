@@ -52,7 +52,19 @@ MainTab:Toggle{
         end
     end
 }
-
+Tab:Button{
+	Name = "Auto Collect Scrap ⚙️ ",
+	Description = "Automaticly Collects Scrap From All Around Map",
+	Callback = function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
+end
+}
+GUI:Notification{
+	Title = "Collecting Scrap",
+	Text = "Wait.. Collecting Scrap, If stop you can move.",
+	Duration = 3,
+	Callback = function() end
+}
 
 local TeleportTab = GUI:Tab{
     Name = "🌀 Teleports 🌀",
