@@ -17,6 +17,7 @@ Tab:Toggle{
         while true do
   task.wait(1)
     game.Players.Characters.Stats:FindFirstChild("Stamina").Value = 100
+end
 }
     Tab:Toggle{
 	Name = "Infinite Combat Stamina ⚔️",
