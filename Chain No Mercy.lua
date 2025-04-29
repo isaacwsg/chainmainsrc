@@ -39,8 +39,16 @@ MainTab:Toggle{
     StartingState = false,
     Description = "Gives Infinite Combat Stamina",
     Callback = function(state)
-       local staminaToggle -- move declaration outside the callback
-
+   while true do
+	task.wait(0.5)
+	game.Players.LocalPlayer.Character.Stats:FindFirstChild("CombatStamina").Value = 100
+if combatStaminaToggle == false then
+					break
+				end
+			end
+		elseif combatStaminaToggle == true then
+			combatStaminaToggle = false
+}
 
 MainTab:Button{
 	Name = "Auto Collect Scrap ⚙️ ",
