@@ -7,7 +7,7 @@ Theme = Mercury.Themes.Dark,
     Link = "https://github.com/deeeity/mercury-lib"
 }
 
-local Tab = GUI:Tab{
+local MainTab = GUI:Tab{
     Name = "Main",
     Icon = "rbxassetid://6594776225"
 }
@@ -81,7 +81,7 @@ TeleportTab:Button{
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.623566, -113.515549, -258.481567, 0.99898839, 1.88050908e-08, -0.0449683107, -1.91088674e-08, 1, -6.32548991e-09, 0.0449683107, 7.17838455e-09, 0.99898839)
     end
 }
-local Tab = GUI:Tab{
+local AmmoTab = GUI:Tab{
     Name = "💥Ammo💥",
     Icon = "rbxassetid://13488840422"
 }
