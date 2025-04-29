@@ -12,7 +12,7 @@ local MainTab = GUI:Tab{
     Icon = "rbxassetid://6594776225"
 }
 
-Tab:Toggle{
+MainTab:Toggle{
     Name = "Infinite Stamina 🏃",
     StartingState = false,
     Description = "Gives Infinite Stamina!",
@@ -34,7 +34,7 @@ local staminaToggle
 }
 
 local combatToggle
-Tab:Toggle{
+MainTab:Toggle{
     Name = "Infinite Combat Stamina ⚔️",
     StartingState = false,
     Description = "Gives Infinite Combat Stamina",
@@ -82,7 +82,7 @@ TeleportTab:Button{
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.623566, -113.515549, -258.481567, 0.99898839, 1.88050908e-08, -0.0449683107, -1.91088674e-08, 1, -6.32548991e-09, 0.0449683107, 7.17838455e-09, 0.99898839)
     end
 }
-local AmmoTab = GUI:Tab{
+local Tab = GUI:Tab{
     Name = "💥Ammo💥",
     Icon = "rbxassetid://13488840422"
 }
