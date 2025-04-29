@@ -39,16 +39,27 @@ MainTab:Toggle{
     StartingState = false,
     Description = "Gives Infinite Combat Stamina",
     Callback = function(state)
+       local staminaToggle -- move declaration outside the callback
+
+MainTab:Toggle{
+    Name = "Infinite Stamina 🏃",
+    StartingState = false,
+    Description = "Gives Infinite Stamina!",
+    Callback = function(state)
         if state then
-            combatToggle = game:GetService("RunService").Heartbeat:Connect(function()
+            staminaToggle = game:GetService("RunService").Heartbeat:Connect(function()
                 local player = game.Players.LocalPlayer
                 local char = player.Character
-                if char and char:FindFirstChild("Stats") and char.Stats:FindFirstChild("CombatStamina") then
-                    char.Stats.CombatStamina.Value = 100
+                if char and char:FindFirstChild("Stats") and char.Stats:FindFirstChild("Stamina") then
+                    char.Stats.Stamina.Value = 100
                 end
             end)
-        elseif combatToggle then
-            combatToggle:Disconnect()
+        elseif staminaToggle then
+            staminaToggle:Disconnect()
+        end
+    end
+}
+
         end
     end
 }
