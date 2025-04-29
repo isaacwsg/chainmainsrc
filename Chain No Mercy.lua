@@ -41,33 +41,7 @@ MainTab:Toggle{
     Callback = function(state)
        local staminaToggle -- move declaration outside the callback
 
-MainTab:Toggle{
-    Name = "Infinite Stamina 🏃",
-    StartingState = false,
-    Description = "Gives Infinite Stamina!",
-    Callback = function(state)
-        if state then
-             if state then
-            staminaToggle = game:GetService("RunService").Heartbeat:Connect(function()
-                local player = game.Players.LocalPlayer
-                if not player then return end
-                local char = player.Character
-                if not char then return end
-                local stats = char:FindFirstChild("Stats")
-                local stamina = stats and stats:FindFirstChild("Stamina")
-                if stamina then
-                    stamina.Value = 100
-                end
-            end)
-        elseif staminaToggle then
-            staminaToggle:Disconnect()
-        end
-    end
-}
 
-        end
-    end
-}
 MainTab:Button{
 	Name = "Auto Collect Scrap ⚙️ ",
 	Description = "Automaticly Collects Scrap From All Around Map",
