@@ -52,7 +52,7 @@ MainTab:Toggle{
         end
     end
 }
-Tab:Button{
+MainTab:Button{
 	Name = "Auto Collect Scrap ⚙️ ",
 	Description = "Automaticly Collects Scrap From All Around Map",
 	Callback = function() 
