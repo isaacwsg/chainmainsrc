@@ -33,14 +33,6 @@ Tab:Toggle{
 			end
 		elseif combatStaminaToggle == true then
 			combatStaminaToggle = false
-			
-			gui:notification{
-				Title = "CHAIN ⚔️ | Infinite Combat Stamina",
-				Text = "Now your combat stamina will deplete normally when swinging ❌",
-				Duration = 3,
-				Callback = function() end
-			}
-        end
 }
 local Tab = GUI:Tab{
 	Name = "  🌀 Teleports 🌀",
