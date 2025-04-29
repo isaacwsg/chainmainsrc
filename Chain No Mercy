@@ -25,13 +25,6 @@ Tab:Toggle{
 	Callback = function(state) 
     		task.wait(0.5)
 				game.Players.LocalPlayer.Character.Stats:FindFirstChild("CombatStamina").Value = 100
-
-				if combatStaminaToggle == false then
-					break
-				end
-			end
-		elseif combatStaminaToggle == true then
-			combatStaminaToggle = false
 }
 local Tab = GUI:Tab{
 	Name = "  🌀 Teleports 🌀",
