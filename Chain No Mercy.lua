@@ -83,5 +83,5 @@ TeleportTab:Button{
 }
 local Tab = GUI:Tab{
     Name = "💥Ammo💥",
-    Icon = "rbxassetid://13488840452"
+    Icon = "rbxassetid://13488840422"
 }
