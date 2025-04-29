@@ -47,11 +47,16 @@ MainTab:Toggle{
     Description = "Gives Infinite Stamina!",
     Callback = function(state)
         if state then
+             if state then
             staminaToggle = game:GetService("RunService").Heartbeat:Connect(function()
                 local player = game.Players.LocalPlayer
+                if not player then return end
                 local char = player.Character
-                if char and char:FindFirstChild("Stats") and char.Stats:FindFirstChild("Stamina") then
-                    char.Stats.Stamina.Value = 100
+                if not char then return end
+                local stats = char:FindFirstChild("Stats")
+                local stamina = stats and stats:FindFirstChild("Stamina")
+                if stamina then
+                    stamina.Value = 100
                 end
             end)
         elseif staminaToggle then
