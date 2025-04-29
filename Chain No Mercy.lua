@@ -9,7 +9,7 @@ Theme = Mercury.Themes.Dark,
 
 local Tab = GUI:Tab{
     Name = "Main",
-    Icon = "rbxassetid://8569322835"
+    Icon = "rbxassetid://6594776234"
 }
 
 local staminaToggle
@@ -55,7 +55,7 @@ Tab:Toggle{
 
 local TeleportTab = GUI:Tab{
     Name = "🌀 Teleports 🌀",
-    Icon = "rbxassetid://8569322835"
+    Icon = "rbxassetid://10382429839"
 }
 
 TeleportTab:Button{
@@ -80,4 +80,8 @@ TeleportTab:Button{
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.623566, -113.515549, -258.481567, 0.99898839, 1.88050908e-08, -0.0449683107, -1.91088674e-08, 1, -6.32548991e-09, 0.0449683107, 7.17838455e-09, 0.99898839)
     end
+}
+local Tab = GUI:Tab{
+    Name = "💥Ammo💥",
+    Icon = "rbxassetid://10260519981"
 }
