@@ -51,6 +51,82 @@ Tab:Toggle{
         end
     end
 }
+Tab:Toggle{
+	Name = "Toggle",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+		local Players = game:GetService("Players")
+		local UserInputService = game:GetService("UserInputService")
+		local RunService = game:GetService("RunService")
+		local Workspace = game:GetService("Workspace")
+
+		local player = Players.LocalPlayer
+		local camera = Workspace.CurrentCamera
+
+		local chainPath = Workspace:WaitForChild("Misc"):WaitForChild("AI")
+		local chainName = "CHAIN"
+
+		local targetPart = nil
+		local locking = false
+		local chainAvailable = false
+
+		local inputConn, renderConn, addedConn, removedConn
+
+		local function updateChainReference()
+			local chain = chainPath:FindFirstChild(chainName)
+			if chain and (chain:FindFirstChild("Torso") or chain:FindFirstChild("UpperTorso")) then
+				targetPart = chain:FindFirstChild("Torso") or chain:FindFirstChild("UpperTorso")
+				chainAvailable = true
+			else
+				targetPart = nil
+				chainAvailable = false
+				locking = false
+			end
+		end
+
+		if state then
+			updateChainReference()
+
+			addedConn = chainPath.ChildAdded:Connect(function(child)
+				if child.Name == chainName then
+					task.wait(0.1)
+					updateChainReference()
+				end
+			end)
+
+			removedConn = chainPath.ChildRemoved:Connect(function(child)
+				if child.Name == chainName then
+					updateChainReference()
+				end
+			end)
+
+			inputConn = UserInputService.InputBegan:Connect(function(input, gameProcessed)
+				if gameProcessed then return end
+				if input.UserInputType == Enum.UserInputType.MouseButton2 and chainAvailable then
+					locking = not locking
+				end
+			end)
+
+			renderConn = RunService.RenderStepped:Connect(function()
+				if locking and targetPart then
+					camera.CFrame = CFrame.new(camera.CFrame.Position, targetPart.Position)
+				end
+			end)
+		else
+			-- Disconnect all connections if toggle turned off
+			if inputConn then inputConn:Disconnect() end
+			if renderConn then renderConn:Disconnect() end
+			if addedConn then addedConn:Disconnect() end
+			if removedConn then removedConn:Disconnect() end
+
+			locking = false
+			targetPart = nil
+			chainAvailable = false
+		end
+	end
+}
+
 
 local TeleportTab = GUI:Tab{
     Name = "🌀 Teleports 🌀",
