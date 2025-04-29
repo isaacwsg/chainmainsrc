@@ -12,13 +12,14 @@ local MainTab = GUI:Tab{
     Icon = "rbxassetid://6594776225"
 }
 
-local staminaToggle
 Tab:Toggle{
     Name = "Infinite Stamina 🏃",
     StartingState = false,
     Description = "Gives Infinite Stamina!",
+
     Callback = function(state)
         if state then
+local staminaToggle
             staminaToggle = game:GetService("RunService").Heartbeat:Connect(function()
                 local player = game.Players.LocalPlayer
                 local char = player.Character
@@ -84,4 +85,9 @@ TeleportTab:Button{
 local AmmoTab = GUI:Tab{
     Name = "💥Ammo💥",
     Icon = "rbxassetid://13488840422"
+}
+Tab:Button{
+	Name = "",
+	Description = nil,
+	Callback = function() end
 }
