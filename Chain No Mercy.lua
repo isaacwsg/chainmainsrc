@@ -9,7 +9,7 @@ Theme = Mercury.Themes.Dark,
 
 local Tab = GUI:Tab{
     Name = "Main",
-    Icon = "rbxassetid://6594776234"
+    Icon = "rbxassetid://6594776225"
 }
 
 local staminaToggle
@@ -55,7 +55,7 @@ Tab:Toggle{
 
 local TeleportTab = GUI:Tab{
     Name = "🌀 Teleports 🌀",
-    Icon = "rbxassetid://10382429839"
+    Icon = "rbxassetid://10382429808"
 }
 
 TeleportTab:Button{
@@ -83,5 +83,5 @@ TeleportTab:Button{
 }
 local Tab = GUI:Tab{
     Name = "💥Ammo💥",
-    Icon = "rbxassetid://10260519981"
+    Icon = "rbxassetid://13488840452"
 }
