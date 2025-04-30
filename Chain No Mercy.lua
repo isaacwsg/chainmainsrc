@@ -94,11 +94,11 @@ MainTab:Toggle{
                         local bp = stats:FindFirstChild("Blueprints")
                         if bp then
                             -- Set all attributes to true
-                            for _, attr in ipairs(bp:GetAttributes()) do
-                                bp:SetAttribute(attr, true)
+                            for attrName, _ in pairs(bp:GetAttributes()) do
+                                bp:SetAttribute(attrName, true)
                             end
                             -- Set all BoolValue children to true
-                            for _, obj in ipairs(bp:GetChildren()) do
+                            for _, obj in pairs(bp:GetChildren()) do
                                 if obj:IsA("BoolValue") then
                                     obj.Value = true
                                 end
