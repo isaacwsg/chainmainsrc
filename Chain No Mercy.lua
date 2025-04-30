@@ -67,7 +67,6 @@ MainTab:Button{
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
     end
-}
 
 -- Notification
 GUI:Notification{
@@ -81,7 +80,7 @@ local blueprintToggle = false
 MainTab:Toggle{
     Name = "Unlock All Blueprints 🔓",
     StartingState = false,
-    Description = "Unlocks every available blueprint",
+    Description = "Unlocks every available blueprint (via attributes)",
     Callback = function(state)
         blueprintToggle = state
         if state then
@@ -93,15 +92,8 @@ MainTab:Toggle{
                     if stats then
                         local bp = stats:FindFirstChild("Blueprints")
                         if bp then
-                            -- Set all attributes to true
                             for attrName, _ in pairs(bp:GetAttributes()) do
                                 bp:SetAttribute(attrName, true)
-                            end
-                            -- Set all BoolValue children to true
-                            for _, obj in pairs(bp:GetChildren()) do
-                                if obj:IsA("BoolValue") then
-                                    obj.Value = true
-                                end
                             end
                         end
                     end
