@@ -1,6 +1,6 @@
-local success, MercuryLib = pcall(function()
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
-end)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
 local GUI = Mercury:Create{
     Name = "Chain No Mercy",
     Size = UDim2.fromOffset(600, 400),
