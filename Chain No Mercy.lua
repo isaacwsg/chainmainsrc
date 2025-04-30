@@ -11,7 +11,7 @@ local MainTab = GUI:Tab{
 	Name = "New Tab",
 	Icon = "rbxassetid://6594776225"
 }
-Tab:Button{
+MainTab:Button{
 	Name = "Infinite Stamina 🏃",
 	Description = "Gives INF Stamnia"
 	Callback = function() 
