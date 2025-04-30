@@ -91,11 +91,11 @@ MainTab:Toggle{
                     local stats = player:FindFirstChild("PlayerStats")
                     if stats and stats:FindFirstChild("Blueprints") then
                         local bp = stats.Blueprints
-                        bp:SetAttribute("Combat Knife", true)
-                        bp:SetAttribute("Double Barrel", true)
+                        bp:SetAttribute("CombatKnife", true)
+                        bp:SetAttribute("DoubleBarrel", true)
                         bp:SetAttribute("M1911", true)
                         bp:SetAttribute("Machete", true)
-                        bp:SetAttribute("Spell Book", true)
+                        bp:SetAttribute("SpellBook", true)
                     end
                 end
             end)
