@@ -1,6 +1,7 @@
+-- Load Mercury UI Library
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
-
+-- GUI Setup
 local GUI = Mercury:Create{
     Name = "Chain No Mercy",
     Size = UDim2.fromOffset(600, 400),
@@ -8,105 +9,148 @@ local GUI = Mercury:Create{
     Link = "https://github.com/deeeity/mercury-lib"
 }
 
+-- Tabs
 local MainTab = GUI:Tab{
-	Name = "New Tab",
-	Icon = "rbxassetid://6594776225"
+    Name = "Main",
+    Icon = "rbxassetid://6594776225"
 }
+
+-- Infinite Stamina Button (not toggle for now)
 MainTab:Button{
-	Name = "Infinite Stamina 🏃",
-	Description = "Gives INF Stamnia"
-	Callback = function() 
-    while true do 
-            task.wait(1)
-            game.Players.LocalPLayer.Character.Stats:FindFirstChild("Stamnia").Value = 100
+    Name = "Infinite Stamina 🏃",
+    Description = "Gives INF Stamina",
+    Callback = function()
+        task.spawn(function()
+            while true do
+                task.wait(1)
+                local player = game.Players.LocalPlayer
+                if player and player.Character and player.Character:FindFirstChild("Stats") then
+                    local stamina = player.Character.Stats:FindFirstChild("Stamina") or player.Character.Stats:FindFirstChild("Stamnia") -- typo fallback
+                    if stamina then
+                        stamina.Value = 100
+                    end
+                end
+            end
+        end)
     end
 }
-    local combatToggle
+
+-- Infinite Combat Stamina Toggle
+local combatStaminaToggle = false
 MainTab:Toggle{
     Name = "Infinite Combat Stamina ⚔️",
     StartingState = false,
     Description = "Gives Infinite Combat Stamina",
     Callback = function(state)
-   while true do
-	task.wait(0.5)
-	game.Players.LocalPlayer.Character.Stats:FindFirstChild("CombatStamina").Value = 100
-if combatStaminaToggle == false then
-					break
-				end
-			end
-		elseif combatStaminaToggle == true then
-			combatStaminaToggle = false
+        combatStaminaToggle = state
+        if state then
+            task.spawn(function()
+                while combatStaminaToggle do
+                    task.wait(0.5)
+                    local player = game.Players.LocalPlayer
+                    if player and player.Character and player.Character:FindFirstChild("Stats") then
+                        local cs = player.Character.Stats:FindFirstChild("CombatStamina")
+                        if cs then
+                            cs.Value = 100
+                        end
+                    end
+                end
+            end)
+        end
+    end
 }
-        MainTab:Button{
-	Name = "Auto Collect Scrap ⚙️ ",
-	Description = "Automaticly Collects Scrap From All Around Map",
-	Callback = function() 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
-end
 
-GUI:Notification{
-	Title = "Collecting Scrap",
-	Text = "Wait.. Collecting Scrap, If stop you can move.",
-	Duration = 3,
-	Callback = function() end
+-- Auto Collect Scrap
+MainTab:Button{
+    Name = "Auto Collect Scrap ⚙️",
+    Description = "Automatically Collects Scrap From All Around Map",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
+    end
 }
-            local TeleportTab = GUI:Tab{
+
+-- Notification
+GUI:Notification{
+    Title = "Collecting Scrap",
+    Text = "Wait.. Collecting Scrap, If stop you can move.",
+    Duration = 3,
+    Callback = function() end
+}
+
+-- Teleports
+local TeleportTab = GUI:Tab{
     Name = "🌀 Teleports 🌀",
     Icon = "rbxassetid://10382429808"
 }
 
+local function tp(cframe)
+    local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if hrp then
+        hrp.CFrame = cframe
+    end
+end
+
 TeleportTab:Button{
     Name = "Small Cabin 🏠",
-    Description = nil,
     Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(162.680023, -94.2610092, 230.036407, 0.999293089, -1.40679939e-08, 0.0375940055, 1.348163e-08, 1, 1.58507891e-08, -0.0375940055, -1.53327555e-08, 0.999293089)
+        tp(CFrame.new(162.68, -94.26, 230.03))
     end
 }
 
 TeleportTab:Button{
     Name = "Storage Shed",
-    Description = nil,
     Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-324.801575, -88.6199799, 290.675598, 0.451050401, 1.02070366e-07, -0.892498493, -2.45230627e-08, 1, 1.01971303e-07, 0.892498493, -2.41073987e-08, 0.451050401)
+        tp(CFrame.new(-324.8, -88.62, 290.67))
     end
 }
 
 TeleportTab:Button{
     Name = "Warehouse",
-    Description = nil,
     Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.623566, -113.515549, -258.481567, 0.99898839, 1.88050908e-08, -0.0449683107, -1.91088674e-08, 1, -6.32548991e-09, 0.0449683107, 7.17838455e-09, 0.99898839)
+        tp(CFrame.new(314.62, -113.51, -258.48))
     end
 }
-    TeleportTab:Button{
-	Name = "Shop Location",
-	Description = "Teleports to Shop"
-	Callback = function() 
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-111.376678, -87.2069778, 203.522934, -0.851789057, -5.88233995e-08, 0.523884892, -1.06661249e-08, 1, 9.49409156e-08, -0.523884892, 3281811e-08, -0.851789057)        
-        end
+
+TeleportTab:Button{
+    Name = "Shop Location",
+    Description = "Teleports to Shop",
+    Callback = function()
+        tp(CFrame.new(-111.376, -87.206, 203.523))
+    end
 }
- TeleportTab:Button{
-	Name = "Workshop",
-	Description = "Teleports to Workshop"
-	Callback = function() 
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(169.560654, -103.651337, -30.0143433, 0.262320459, 1.83968858e-08, -0.964980841, 9.02348959e-11, 1, 1.90890379e-08, 0.964980841, -5.09452036e-09, 0.262320459)
-        end
+
+TeleportTab:Button{
+    Name = "Workshop",
+    Description = "Teleports to Workshop",
+    Callback = function()
+        tp(CFrame.new(169.561, -103.651, -30.014))
+    end
 }
+
+-- Ammo Tab
 local AmmoTab = GUI:Tab{
     Name = "💥Ammo💥",
     Icon = "rbxassetid://13488840422"
 }
-    AmmoTab:Button{
-	Name = "INF M1911 Ammo",
-	Description = "Gives INF M1911 Ammo"
-	Callback = function() 
-    game.Players.LocalPlayer.Character.Items.M1911:SetAttribute("Ammo", 30)
+
+AmmoTab:Button{
+    Name = "INF M1911 Ammo",
+    Description = "Gives INF M1911 Ammo",
+    Callback = function()
+        local m1911 = game.Players.LocalPlayer.Character:FindFirstChild("Items") and game.Players.LocalPlayer.Character.Items:FindFirstChild("M1911")
+        if m1911 then
+            m1911:SetAttribute("Ammo", 30)
+        end
     end
 }
-        AmmoTab:Button{
-	Name = "INF Double Barrel Ammo",
-	Description = "Gives INF Double Barrel Ammo"
-	Callback = function() 
-    game.Players.LocalPlayer.Character.Items.DoubleBarrel:SetAttribute("Ammo", 30)
+
+AmmoTab:Button{
+    Name = "INF Double Barrel Ammo",
+    Description = "Gives INF Double Barrel Ammo",
+    Callback = function()
+        local db = game.Players.LocalPlayer.Character:FindFirstChild("Items") and game.Players.LocalPlayer.Character.Items:FindFirstChild("DoubleBarrel")
+        if db then
+            db:SetAttribute("Ammo", 30)
+        end
     end
-}    
+}
