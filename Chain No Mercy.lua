@@ -76,7 +76,33 @@ GUI:Notification{
     Duration = 3,
     Callback = function() end
 }
-
+-- Auto Unlock All Weapon Blueprints
+local blueprintToggle = false
+MainTab:Toggle{
+    Name = "Auto Unlock All Blueprints 🔓",
+    StartingState = false,
+    Description = "Unlocks All Blueprints",
+    Callback = function(state)
+        blueprintToggle = state
+        if state then
+            task.spawn(function()
+                while blueprintToggle do
+                    task.wait(1)
+                    local player = game.Players.LocalPlayer
+                    local stats = player.Character and player.Character:FindFirstChild("PlayerStats")
+                    if stats and stats:FindFirstChild("Blueprints") then
+                        local blueprints = stats.Blueprints
+                        Blueprints:SetAttribute("Combat Knife", true)
+                        Blueprints:SetAttribute("Double Barrel", true)
+                        Blueprints:SetAttribute("M1911", true)
+                        Blueprints:SetAttribute("Machete", true)
+                        Blueprints:SetAttribute("Spell Book", true)
+                    end
+                end
+            end)
+        end
+    end
+}
 -- Teleports
 local TeleportTab = GUI:Tab{
     Name = "🌀 Teleports 🌀",
