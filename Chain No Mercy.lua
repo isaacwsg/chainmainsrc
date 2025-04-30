@@ -77,13 +77,13 @@ GUI:Notification{
     Callback = function() end
 }
 -- Auto Unlock All Weapon Blueprints
-local blueprintToggle = false
+local BlueprintToggle = false
 MainTab:Toggle{
     Name = "Auto Unlock All Blueprints 🔓",
     StartingState = false,
     Description = "Unlocks All Blueprints",
     Callback = function(state)
-        blueprintToggle = state
+        BlueprintToggle = state
         if state then
             task.spawn(function()
                 while blueprintToggle do
