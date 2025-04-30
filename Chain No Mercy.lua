@@ -77,10 +77,11 @@ GUI:Notification{
     Callback = function() end
 }
 local blueprintToggle = false
+
 MainTab:Toggle{
-    Name = "Auto Unlock All Blueprints 🔓",
+    Name = "Unlock All Blueprints 🔓",
     StartingState = false,
-    Description = "Unlocks blueprints for Combat Knife, M1911, etc.",
+    Description = "Unlocks every available blueprint",
     Callback = function(state)
         blueprintToggle = state
         if state then
@@ -89,13 +90,20 @@ MainTab:Toggle{
                     task.wait(1)
                     local player = game.Players.LocalPlayer
                     local stats = player:FindFirstChild("PlayerStats")
-                    if stats and stats:FindFirstChild("Blueprints") then
-                        local bp = stats.Blueprints
-                        bp:SetAttribute("CombatKnife", true)
-                        bp:SetAttribute("DoubleBarrel", true)
-                        bp:SetAttribute("M1911", true)
-                        bp:SetAttribute("Machete", true)
-                        bp:SetAttribute("SpellBook", true)
+                    if stats then
+                        local bp = stats:FindFirstChild("Blueprints")
+                        if bp then
+                            -- Set all attributes to true
+                            for _, attr in ipairs(bp:GetAttributes()) do
+                                bp:SetAttribute(attr, true)
+                            end
+                            -- Set all BoolValue children to true
+                            for _, obj in ipairs(bp:GetChildren()) do
+                                if obj:IsA("BoolValue") then
+                                    obj.Value = true
+                                end
+                            end
+                        end
                     end
                 end
             end)
