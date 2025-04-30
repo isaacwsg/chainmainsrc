@@ -14,13 +14,23 @@ local MainTab = GUI:Tab{
     Name = "Main",
     Icon = "rbxassetid://6594776225"
 }
-MainTab:Toggle{
-	Name = "Toggle",
-	StartingState = false,
-	Description = nil,
-	Callback = function(state)
-          while true do
-           game.Players.LocalPlayers.Character.Stats:("Stamina").Value = 100
+
+-- Infinite Stamina Button (not toggle for now)
+MainTab:Button{
+    Name = "Infinite Stamina 🏃",
+    Description = "Gives INF Stamina",
+    Callback = function()
+        task.spawn(function()
+            while true do
+                task.wait(1)
+                local player = game.Players.LocalPlayer
+                if player and player.Character and player.Character:FindFirstChild("Stats") then
+                    local stamina = player.Character.Stats:FindFirstChild("Stamina") or player.Character.Stats:FindFirstChild("Stamnia") -- typo fallback
+                    if stamina then
+                        stamina.Value = 100
+                    end
+                end
+            end
         end)
     end
 }
@@ -97,7 +107,7 @@ TeleportTab:Button{
 TeleportTab:Button{
     Name = "Warehouse",
     Callback = function()
-       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.623566, -113.515549, -258.481567, 0.99898839, 1.88050908e-08, -0.0449683107, -1.91088674e-08, 1, -6.32548991e-09, 0.0449683107, 7.17838455e-09, 0.99898839)
+        tp(CFrame.new(314.62, -113.51, -258.48))
     end
 }
 
