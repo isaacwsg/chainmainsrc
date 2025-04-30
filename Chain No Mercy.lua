@@ -14,23 +14,13 @@ local MainTab = GUI:Tab{
     Name = "Main",
     Icon = "rbxassetid://6594776225"
 }
-
--- Infinite Stamina Button (not toggle for now)
-MainTab:Button{
-    Name = "Infinite Stamina 🏃",
-    Description = "Gives INF Stamina",
-    Callback = function()
-        task.spawn(function()
-            while true do
-                task.wait(1)
-                local player = game.Players.LocalPlayer
-                if player and player.Character and player.Character:FindFirstChild("Stats") then
-                    local stamina = player.Character.Stats:FindFirstChild("Stamina") or player.Character.Stats:FindFirstChild("Stamnia") -- typo fallback
-                    if stamina then
-                        stamina.Value = 100
-                    end
-                end
-            end
+MainTab:Toggle{
+	Name = "Toggle",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+          while true do
+           game.Players.LocalPlayers.Character.Stats:("Stamina").Value = 100
         end)
     end
 }
