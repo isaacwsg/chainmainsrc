@@ -67,7 +67,7 @@ MainTab:Button{
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/BongCloudMaster/CHAIN/main/scrapcollector.lua"))()
     end
-
+}
 -- Notification
 GUI:Notification{
     Title = "Collecting Scrap",
