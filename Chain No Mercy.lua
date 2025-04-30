@@ -97,7 +97,7 @@ TeleportTab:Button{
 TeleportTab:Button{
     Name = "Warehouse",
     Callback = function()
-        tp(CFrame.new(314.62, -113.51, -258.48))
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314.623566, -113.515549, -258.481567, 0.99898839, 1.88050908e-08, -0.0449683107, -1.91088674e-08, 1, -6.32548991e-09, 0.0449683107, 7.17838455e-09, 0.99898839)
     end
 }
 
